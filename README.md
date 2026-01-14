@@ -61,5 +61,38 @@ Let one AWS account access resources in another account
 <br>
 Give applications secure access without storing keys
 
-# 
+# EC2 instance 
+EC2 stands for Elastic Cloud Compute. It is a service offered by AWS which provides virtual servers which is elastic in nature.
+<br>
+Compute means we are requesting Virtual Servers (CPU,RAM,Disks)
+<br>
+Cloud : service over the internet. 
+<br>
+Elastic : It means this service can be scale up and down.
+<br>
+Advantages : 
+<br>
+No need to upgrade unlike in physical server.
+<br>
+no need to manage unlike in physical server.
+<br>
+There are 5 diff types of EC2 instance : 
+<br>
+1. General Purpose : Mostly used.
+<br>
+2. Compute Optimized : Used for ML model, gaming servers.
+<br>
+3. Memory Optimized : Used for big data analytics.
+<br>
+4. Storage Optimized 
+<br>
+5. Accelated Optimized : Integrated with GPUs,AI-chips
 
+# How to login on EC2 instance : 
+```bash 
+
+ssh -i <key-value-pair-file-path>
+<br>
+chmod 600 <key-value-pair-file-path> // to secure it
+
+```
