@@ -89,10 +89,35 @@ There are 5 diff types of EC2 instance :
 5. Accelated Optimized : Integrated with GPUs,AI-chips
 
 # How to login on EC2 instance : 
+Open Gitbash 
+<br>
+
 ```bash 
 
-ssh -i <key-value-pair-file-path>
+ssh -i <key-value-pair-file-path> ubuntu@<public-ipv4>
 <br>
 chmod 600 <key-value-pair-file-path> // to secure it
 
 ```
+
+# Virtual Private Cloud : 
+A VPC (Virtual Private Cloud) is our own private network inside AWS.
+<br>
+It lets us create an isolated environment where we can launch and manage AWS resources (like EC2, RDS, etc.) with full control over:
+<br>
+IP address ranges
+<br>
+Subnets (public and private)
+<br>
+Routing (route tables, gateways)
+<br>
+Network security (security groups, NACLs)
+<br>
+All configuration of VPC is setup by the devops engineer of an organization.
+<br>
+Size of VPC is defined by the IP address range. And further this IP address range can be divided into subnets for different subprojects inside a project of an organization.
+<br>
+Example : If an user wants to access application which is hosted on VPC then firstly it pass the Internet gatway of the VPC and then it passes to the public subnet inside VPC then there will be a load balancer attached to public subnet which has target group and takes the request to particular application through route table (router) and then request to needs to pass security groups before reaching to particular application. 
+<br>
+If an application needs to download a package from the public internet (google.com) then <b>NAT gatway</b> is used to mask the ip address of private virtual machines and application with load balance ip addr or router ip addrerss.
+<br>
