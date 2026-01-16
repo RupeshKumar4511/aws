@@ -60,6 +60,8 @@ Allow an EC2 instance to access S3
 Let one AWS account access resources in another account
 <br>
 Give applications secure access without storing keys
+<br>
+Github Repo : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/tree/main/day-2
 
 # EC2 instance 
 EC2 stands for Elastic Cloud Compute. It is a service offered by AWS which provides virtual servers which is elastic in nature.
@@ -100,6 +102,9 @@ chmod 600 <key-value-pair-file-path> // to secure it
 
 ```
 
+<br>
+Github Repo : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/tree/main/day-3
+
 # Virtual Private Cloud : 
 A VPC (Virtual Private Cloud) is our own private network inside AWS.
 <br>
@@ -121,3 +126,22 @@ Example : If an user wants to access application which is hosted on VPC then fir
 <br>
 If an application needs to download a package from the public internet (google.com) then <b>NAT gatway</b> is used to mask the ip address of private virtual machines and application with load balance ip addr or router ip addrerss.
 <br>
+VPC flow logs contains all the logs of requests. 
+<br>
+Github Repo : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/tree/main/day-4
+<br>
+Security Groups and NACL(Network Access Control List) are very crucial for our application because these are last point of security. Security Groups are implemented at instance level and NACL implemented at subnet level.
+<br>
+There are two concepts in Security Groups : 
+<br>
+1. Inbound Traffic  : Request comming into ec2 instance from outside. 
+<br>
+2. Outbound Traffic : Request outgoing from ec2 instance to public network like google. 
+<br>
+By default when we create an ec2 instance then it provides default VPC because it assigns a security groups to our instance which deny every incoming request and allow every outgoing request except traffic on port 25. 
+<br>
+NACL : A Network Access Control List is a stateless firewall that controls inbound and outbound traffic at the subnet level. It operates at the IP address level and can allow or deny traffic based on rules that you define. NACLs provide an additional layer of network security for your VPC. Here we define which traffic will be denied or allowed.
+<br>
+When we create a VPC on aws then aws will automatically create internet gatway, NACL with default configuration and route table.
+<br>
+Github Repo : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/tree/main/day-5
