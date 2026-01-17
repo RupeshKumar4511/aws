@@ -144,4 +144,33 @@ NACL : A Network Access Control List is a stateless firewall that controls inbou
 <br>
 When we create a VPC on aws then aws will automatically create internet gatway, NACL with default configuration and route table.
 <br>
+In NACL configuration order of inbound rules is very important. If the very first allows to any port or ip address then that request will be allowed even if it is denied according to rule defined in the end. 
+<br>
 Github Repo : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/tree/main/day-5
+
+# Route 53
+Route 53 on aws provides DNS as service. 
+<br>
+Route 53 provides three main functions:
+<br>
+1. Domain Registration : 
+<br>
+We can buy and manage domains directly (e.g., myapp.com).
+<br>
+2. DNS Routing :
+It routes traffic to AWS resources(available in different hosted zones) such as:
+<br>
+EC2
+<br>
+S3 static websites
+<br>
+Load Balancers
+<br>
+CloudFront distributions
+<br>
+Note : Hosted Zones Configuration -> To do this we need to configure the dns records for running on different hosted zones.
+<br>
+3. Health Checking & Failover
+<br>
+It can monitor endpoints and automatically route traffic to healthy resources.
+
