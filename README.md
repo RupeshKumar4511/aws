@@ -168,9 +168,108 @@ Load Balancers
 <br>
 CloudFront distributions
 <br>
-Note : Hosted Zones Configuration -> To do this we need to configure the dns records for running on different hosted zones.
+Note : Hosted Zones Configuration -> To do this we need to configure the dns records for servers running on different hosted zones.
 <br>
 3. Health Checking & Failover
 <br>
 It can monitor endpoints and automatically route traffic to healthy resources.
 
+# Important Point : 
+To improve resiliency, we deploy the servers in two Availability Zones, by using an Auto Scaling group and an Application Load Balancer. For additional security, we deploy the servers in private subnets. The servers receive requests through the load balancer. The servers can connect to the internet by using a NAT gateway. To improve resiliency, we deploy the NAT gateway in both Availability Zones.
+<br>
+
+<b>Auto Scaling Group (ASG) :</b> An Auto Scaling Group (ASG) in AWS is a service that automatically manages a group of EC2 instances to ensure the right number of servers are running at all times.
+<br>
+It helps we:
+<br>
+Automatically add instances when traffic increases
+<br>
+Automatically remove instances when traffic decreases
+<br>
+Replace unhealthy instances
+<br>
+Maintain high availability across multiple Availability Zones
+<br>
+we define:
+<br>
+Minimum number of instances
+<br>
+Maximum number of instances
+<br>
+Desired capacity
+<br>
+Scaling rules (based on CPU, memory, requests, etc.)
+<br>
+Example:
+If our web app gets more users, ASG can automatically launch new EC2 instances.
+When traffic drops, it terminates extra instances to save cost.
+<br>
+<b>Load Balancer : </b>
+<br>
+A Load Balancer is a service that distributes incoming traffic across multiple servers (instances) so no single server becomes overloaded.
+<br>
+In AWS, Elastic Load Balancing (ELB) automatically:
+<br>
+Receives requests from users
+<br>
+Spreads them across multiple EC2 instances
+<br>
+Sends traffic only to healthy instances
+<br>
+Improves availability, performance, and fault tolerance
+<br>
+Types of AWS Load Balancers:
+<br>
+Application Load Balancer (ALB) – for HTTP/HTTPS (Layer 7)
+<br>
+Network Load Balancer (NLB) – for TCP/UDP, very high performance (Layer 4)
+<br>
+Gateway Load Balancer (GLB) – for network appliances
+<br>
+Benefits:
+<br>
+High availability
+<br>
+No single point of failure
+<br>
+Smooth handling of traffic spikes
+<br>
+Works with Auto Scaling Groups
+<br>
+<b>Target Group :</br> 
+A Target Group is a logical group of resources (targets) that a Load Balancer sends traffic to.
+<br>
+Targets can be:
+<br>
+EC2 instances
+<br>
+IP addresses
+<br>
+Lambda functions
+<br>
+Containers (ECS/EKS)
+<br>
+When you create a Load Balancer, you attach one or more Target Groups to it. The Load Balancer:
+<br>
+Routes requests to the targets in the group
+<br>
+Performs health checks on each target
+<br>
+Sends traffic only to healthy targets
+<br>
+Example:
+<br>
+An Application Load Balancer receives web traffic and forwards it to a Target Group containing 3 EC2 instances. If one instance becomes unhealthy, it is removed automatically from traffic.
+<br>
+<b>Bastion Host or Jump Server : </b> 
+<br>
+A Bastion Host (also called a Jump Server) is a special server used as a secure entry point to access private resources in a network.
+<br>
+In AWS, it is typically:
+<br>
+An EC2 instance placed in a public subnet
+<br>
+Exposed to the internet (usually only on SSH/RDP)
+<br>
+Used to connect to EC2 instances in private subnets
+<br>
