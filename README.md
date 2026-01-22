@@ -273,3 +273,7 @@ Exposed to the internet (usually only on SSH/RDP)
 <br>
 Used to connect to EC2 instances in private subnets
 <br>
+<img src="./aws-production-vpc.jpg" alt="aws-production-vpc.jpg">
+<br>
+Some Interview Questions : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/blob/main/day-8/
+<br>
