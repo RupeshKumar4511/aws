@@ -277,3 +277,12 @@ Used to connect to EC2 instances in private subnets
 <br>
 Some Interview Questions : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/blob/main/day-8/
 <br>
+
+# Amazon S3 : 
+S3 : It is a Simple Storage Service provided by the AWS.
+<br>
+Maximum size of file is 5TB.
+<br>
+S3 buckets are globally accessible.
+<br>
+Github Repo : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/blob/main/day-9/
