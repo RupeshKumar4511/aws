@@ -286,3 +286,26 @@ Maximum size of file is 5TB.
 S3 buckets are globally accessible.
 <br>
 Github Repo : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/blob/main/day-9/
+<br>
+
+# AWS CLI : 
+AWS CLI solves the problem of automation because AWS UI is not automation friendly. 
+<br>
+Tools used to automate the infrstructure on aws Using API :
+<br>
+AWS CLI
+<br>
+Terraform
+<br>
+Cloud Formation
+<br>
+CDK(Cloud Development Kit)
+<br>
+<b>AWS CLI <b>
+<br>
+It is a python utility(written in python) which means we can write python scripts to automate the infrastructure managment. 
+<br>
+It is not used to create heavily configured infrastructure. For this we use Terraform, Cloud Formation or CDK.
+<br>
+
+
