@@ -303,9 +303,64 @@ CDK(Cloud Development Kit)
 <br>
 <b>AWS CLI <b>
 <br>
-It is a python utility(written in python) which means we can write python scripts to automate the infrastructure managment. 
+It is a Python-based utility (written in Python) that allows us to manage and automate AWS infrastructure using command-line commands.
+<br>
+Command Reference : aws-cli documentation
+<br>
+Behind the scene, AWS-CLI converts the command into an API call and send to aws.
 <br>
 It is not used to create heavily configured infrastructure. For this we use Terraform, Cloud Formation or CDK.
 <br>
+
+```bash 
+# How to configure AWS CLI on ubuntu : 
+
+# After installing AWS CLI, write command : 
+aws configure 
+
+# It asks for Access Key ID, Secret Key, region and response type. 
+
+```
+
+<br>
+
+# AWS Cloud Formation Templates(CFT)
+It is a tool used to create infrastructure on aws and follows IaC (Infrastructure as Code) principle.
+<br>
+It uses the YAML files to create infrastructure.
+<br>
+Basically it is a template that helps in cloud formation. 
+<br>
+Principle of IaC : 
+<br>
+All IaC Tool should act as middleman between user and cloud provider. 
+<br>
+Tools takes template(written in YAML,JSON,etc) from user and convert into api call which is understable to 
+cloud providers. 
+<br>
+Cloud Formation template only support AWS. 
+<br>
+Templates are declarative and versioned where declarative means what you sees is what you have and versioned is related with concept of GIT(a version control system).
+<br>
+CFT supports Creation of Infrastructure. 
+<br>
+CFT supports DriftDetection. 
+<br>
+DriftDetection : Drift Detection in AWS is a CloudFormation feature that periodically checks whether your actual AWS resources still match what is defined in your CloudFormation template.
+<br>
+What we need to do to use CFT : 
+<br>
+Write the template in YAML or JSON. 
+<br>
+Go to AWS UI and search for Cloud Formation(CF) and create a CF stack and push the template to it. 
+<br>
+Helpful VS-CODE Extensions : AWS Toolkit , YAML
+<br>
+Reference : AWS CloudFormation documentation. 
+<br>
+Teraform is highly used over CFT because it supports multiple cloud providers.
+<br>
+
+
 
 
