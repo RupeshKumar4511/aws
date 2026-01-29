@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: EC2 with Ubuntu 22.04
+
+Resources:
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      SubnetId: subnet-002fd413d0db22e8c # no need if default subnet exists
+      InstanceType: t3.micro
+      ImageId: ami-02b8269d5e85954ef
+      
+    
+
