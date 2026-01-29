@@ -361,6 +361,42 @@ Reference : AWS CloudFormation documentation.
 Teraform is highly used over CFT because it supports multiple cloud providers.
 <br>
 
+# AWS CI/CD : 
+AWS provides a comprehensive set of CI/CD (Continuous Integration/Continuous Deployment) services that enable developers to automate and streamline their software delivery processes.
+<br>
+AWS CodeCommit, AWS CodePipeline, AWS CodeBuild, and AWS CodeDeploy are the key services involved in achieving CI/CD on AWS platform.
 
+# AWS CodeCommit : 
+<br>
+AWS CodeCommit is just like a github but it is a aws managed service.
+<br>
+Organization mostly use private repositories or installing gitlab on their own server.
+<br>
+We can use AWS CodeCommit also in place of github.
+<br>
+<b>Advantages </b>
+<br>
+Managed Git : It is a git managed service.
+<br>
+Scalability : AWS automatically scale up the resources when no of repo increases.
+<br>
+Reliability : AWS also provides SLA for this service.
+<br>
+<b>Disadvantages </b>
+<br>
+Limited Features
+<br>
+AWS Restricted
+<br>
+Less Integration with services outlside AWS
+<br>
+Because of these disadvantages organisation uses private git repository or self hosted git repository or gitlab on their own server.
 
+# AWS Code pipeline : 
+AWS Code pipeline is very similar to CI/CD tool (jenkins). 
+<br>
+Jenkins is more popular than AWS code pipeline because it is open sources and it is not restricted on one cloud providers, efficiently managed with master-dynamic(docker) slave architeture.
+<br>
+Advantage of AWS Code Pipeline is that it is totally managed by AWS. Organisations are just need to pay as they use it.
+<br>
 
