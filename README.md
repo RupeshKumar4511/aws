@@ -393,7 +393,9 @@ Less Integration with services outlside AWS
 Because of these disadvantages organisation uses private git repository or self hosted git repository or gitlab on their own server.
 
 # AWS Code pipeline : 
-AWS Code pipeline is very similar to CI/CD tool (jenkins). 
+AWS Code pipeline is very similar to CI/CD tool (jenkins). It is an orchestrator which invokes code build whether it is Jenkins code build or AWS Code build. We need to provide the environment to aws code build and this environment would be a virtual machine image or docker image.
+<br>
+It coordinates and automates the stages of a software release process by triggering actions such as source code retrieval, build, testing, and deployment. CodePipeline integrates with services like AWS CodeBuild for building and testing, and can push artifacts or container images to registries such as Amazon ECR.
 <br>
 Jenkins is more popular than AWS code pipeline because it is open sources and it is not restricted on one cloud providers, efficiently managed with master-dynamic(docker) slave architeture.
 <br>
