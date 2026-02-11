@@ -148,6 +148,51 @@ In NACL configuration order of inbound rules is very important. If the very firs
 <br>
 Github Repo : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/tree/main/day-5
 
+# How to setup production level VPC for an application : 
+To set up a production-level VPC with high availability, you must distribute resources across multiple Availability Zones (AZs) to ensure resilience against single-zone failures. 
+<br>
+Step 1. Create VPC and configure core Networking Setup (Feature provided inside VPC)
+<br>
+VPC & AZs: Create a VPC with a CIDR block (e.g., 10.0.0.0/16) spanning two AZs.
+<br>
+Subnets: Provision four subnets:
+<br>
+2 Public Subnets: One in each AZ for load balancers and the bastion host.
+<br>
+2 Private Subnets: One in each AZ for application servers.
+<br>
+Gateways & Connectivity:
+<br>
+Internet Gateway (IGW): Attach one IGW to the VPC. Note that a VPC can only have one IGW attached at a time; it is a horizontally scaled, redundant service by default.
+<br>
+NAT Gateways: Deploy two NAT Gateways, one in each public subnet. This ensures that if one AZ goes down, the other still has internet egress.
+<br>
+Routing:
+<br>
+Public Route Table: Routes 0.0.0.0/0 to the Internet Gateway.
+<br>
+Private Route Tables: Create two separate private route tables. Route 0.0.0.0/0 in Private Subnet A to NAT Gateway A, and Private Subnet B to NAT Gateway B. 
+<br>
+Step 2 :  Security & Control (Feature provided under VPC service)
+Network ACLs (NACLs): Use two separate NACLs to provide stateless filtering at the subnet level.
+<br>
+Security Groups (SGs):
+<br>
+ALB SG: Allow inbound HTTP/HTTPS from 0.0.0.0/0.
+<br>
+App SG: Allow inbound traffic only from the ALB Security Group on the application port.
+<br>
+Bastion Host: Launch a small EC2 instance (e.g., t3.micro) in a public subnet with an Elastic IP to safely access private instances via SSH. 
+<br>
+Bastion SG: Allow SSH (port 22) only from your specific office/home IP.
+<br>
+3. Application Layer
+<br>
+Auto Scaling Group (ASG): Deploy your application instances into the two private subnets. Use a Launch Template to define instance configurations. This feature is provided inside EC2 services.
+<br>
+Load Balancers: Deploy an Application Load Balancer (ALB) across the two public subnets. While the ALB is a single logical resource, it automatically creates nodes in both AZs for high availability. This feature is provided inside EC2 services.
+
+
 # Route 53
 Route 53 on aws provides DNS as service. 
 <br>
@@ -388,7 +433,7 @@ Limited Features
 <br>
 AWS Restricted
 <br>
-Less Integration with services outlside AWS
+Less Integration with services outside AWS
 <br>
 Because of these disadvantages organisation uses private git repository or self hosted git repository or gitlab on their own server.
 
@@ -401,4 +446,17 @@ Jenkins is more popular than AWS code pipeline because it is open sources and it
 <br>
 Advantage of AWS Code Pipeline is that it is totally managed by AWS. Organisations are just need to pay as they use it.
 <br>
+
+# How to setup AWS CI : 
+Step 1 : Create AWS CodeBuild project using Github Repository having some codebase, Dockerfile and buildspec.yaml file (sample template and editor provided by aws).
+<br>
+Test it by manually by clicking on start build button. 
+<br>
+In the Build process, we build docker image and push it to docker registry(docker.io). 
+<br>
+Step 2 : Create AWS Codepipeline project and integrate it with Github source code and CodeBuild project.
+<br>
+Make changes in the github source code and check whether build starts automatically or not. 
+
+# How to setup AWS CI/CD : 
 
