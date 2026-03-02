@@ -448,15 +448,37 @@ Advantage of AWS Code Pipeline is that it is totally managed by AWS. Organisatio
 <br>
 
 # How to setup AWS CI : 
-Step 1 : Create AWS CodeBuild project using Github Repository having some codebase, Dockerfile and buildspec.yaml file (sample template and editor provided by aws).
+Step 1 : Create AWS CodeBuild project using Github Repository having some codebase, Dockerfile and buildspec.yaml file (buildspec.yaml sample template and editor provided by aws).
 <br>
 Test it by manually by clicking on start build button. 
 <br>
 In the Build process, we build docker image and push it to docker registry(docker.io). 
 <br>
+Store the docker credentials in the parameter store of AWS System Manager .
+<br>
 Step 2 : Create AWS Codepipeline project and integrate it with Github source code and CodeBuild project.
 <br>
 Make changes in the github source code and check whether build starts automatically or not. 
 
-# How to setup AWS CI/CD : 
-
+# How to setup AWS CD : 
+Step 1 : Create a AWS codeDeploy application by selecting the Cloud Plateform(EC2,AWS Lambda, ECS).
+<br>
+Step 2 : If we want to deploy our application on AWS EC2 then we need to create EC2 instance and assign a tag eg: "name:simple-fastapi-app". 
+<br>
+Step 3 : Install an agent on that EC2 instance using following commands in the link below : 
+<br>
+Link : https://docs.aws.amazon.com/codedeploy/latest/userguide/codedeploy-agent-operations-install-ubuntu.html 
+<br>
+Also install the docker on ec2 instance.
+<br>
+Step 4 : Create a role(eg: ec2-codeDeploy-role) which allows EC2 to talk with AWS CodeDeploy add permissions for CodeDeploy and EC2FullAccess.
+<br>
+Step 5 : Select the EC2 instance and click on actions and then security and modify IAM role and assign the role(eg: ec2-codeDeploy-role) to it. 
+<br>
+Step 6 : Restart the the codedeploy-agent by using commmand - "sudo service codedeploy-agent restart". 
+<br>
+Step 7 : Create a deployment group in the CodeDeploy application by providing IAM role(eg: ec2-codeDeploy-role), choosing Deployment Type(In-place), choosing Amazon EC2 Instances as Environment configuration, providing the same tag(provided to EC2 instance), disable the loadbalancer. 
+<br>
+Step 8 : Create deployment in the codeDeploy application by providing github repository name and last commit. 
+<br>
+Step 9 : Add a new stage(eg: code-deploy) in the Codepipeline to invoke the codedeploy.
