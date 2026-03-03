@@ -459,6 +459,8 @@ Store the docker credentials in the parameter store of AWS System Manager .
 Step 2 : Create AWS Codepipeline project and integrate it with Github source code and CodeBuild project.
 <br>
 Make changes in the github source code and check whether build starts automatically or not. 
+<br>
+Note : We can use Codebuild as code builder and deployer.
 
 # How to setup AWS CD : 
 Step 1 : Create a AWS codeDeploy application by selecting the Cloud Plateform(EC2,AWS Lambda, ECS).
@@ -482,3 +484,61 @@ Step 7 : Create a deployment group in the CodeDeploy application by providing IA
 Step 8 : Create deployment in the codeDeploy application by providing github repository name and last commit. 
 <br>
 Step 9 : Add a new stage(eg: code-deploy) in the Codepipeline to invoke the codedeploy.
+
+# CloudWatch : 
+It is a monitoring and observability service which is watching activities on aws. 
+<br>
+Main Features of CloudWatch : Monitoring (using Real Life metrics), alerting(alerms), reporting and logging. 
+<br>
+<b>1. Metrics</b>
+<br>
+Numeric data such as:
+<br>
+EC2 CPU utilization
+<br>
+Network traffic
+<br>
+Disk usage
+<br>
+Lambda invocations
+<br>
+Example:
+<br>
+If CPU > 80% → trigger alarm
+<br>
+<b>2. Alarms</b>
+<br>
+We can create alerts:
+<br>
+Email (SNS)
+<br>
+Trigger Auto Scaling
+<br>
+Stop/terminate EC2
+<br>
+Run Lambda function
+<br>
+<b>3. logging</b>
+<br>
+Collects logs from:
+<br>
+EC2
+<br>
+Lambda
+<br>
+Applications
+<br>
+VPC Flow Logs
+<br>
+We can search and analyze logs like which other service is used by EC2 instance. We can also get log insights by writing queries.
+<br>
+<b>4. Custom metrics</b>
+<br>
+By default metrics contains CPU utilization but not memory utilization so we need to setup custom metrics to know memory utilization.
+<br>
+CloudWatch also plays a critical role in cost optimization (using lambda functions) and auto scaling. 
+<br>
+Learn more : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/tree/main/day-16
+<br>
+
+
