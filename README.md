@@ -541,4 +541,23 @@ CloudWatch also plays a critical role in cost optimization (using lambda functio
 Learn more : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/tree/main/day-16
 <br>
 
-
+# AWS Lambda : 
+AWS Lambda is a serverless compute service of AWS that allows to run code without managing servers.
+<br>
+Two main properties : 
+<br>
+1. Compute : It creates the resources like EC2 but it creates the compute when needed and It automatically tear down the compute when it is not needed. 
+<br>
+2. Serverless : We don't need to configure and manage the servers to scale up or scale down unlike EC2. 
+<br>
+Note : In EC2 instace we know public ip addresses and where is hosted but we don't know any of these things in the lambda function. 
+<br>
+It is event-driven in nature. Lambda functions are triggered by events. 
+<br>
+Uses : 
+<br>
+It is used for cost optimization. 
+<br>
+It can be used for security/compliance like Any organisation don't want that any employee create EBS (GP-2) because it has some security issues so we can send notification using lambda functions to Management team to delete it. 
+<br>
+Learn More : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/tree/main/day-17
