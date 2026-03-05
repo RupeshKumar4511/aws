@@ -570,3 +570,20 @@ We can solve this problem using Lambda function.
 For this problem we will write a lambda function using python (boto3) which will further talk to aws api to perform operations.
 <br>
 We can automate using AWS EventBridge Rule and CloudWatch to invoke lambda function eveyday at particular time.
+
+# AWS CloudFront : 
+Amazon CloudFront is a Content Delivery Network (CDN) service provided by AWS.
+<br>
+It is a CDN that distributes content globally with low latency and high speed.
+<br>
+It delivers content to users faster by caching it at edge locations around the world.
+<br>
+Three main problem solved by CloudFront(CDN): 
+<br>
+1. latency
+<br>
+2. Reduced costs 
+<br>
+3. Security concerns to s3 buckets if static content is hosted in s3 buckets.
+<br>
+Learn More : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/tree/main/day-19
