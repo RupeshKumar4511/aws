@@ -318,7 +318,7 @@ Exposed to the internet (usually only on SSH/RDP)
 <br>
 Used to connect to EC2 instances in private subnets
 <br>
-<img src="./aws-production-vpc.jpg" alt="aws-production-vpc.jpg">
+<img src="./images/aws-production-vpc.jpg" alt="aws-production-vpc.jpg">
 <br>
 Some Interview Questions : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/blob/main/day-8/
 <br>
@@ -561,3 +561,12 @@ It is used for cost optimization.
 It can be used for security/compliance like Any organisation don't want that any employee create EBS (GP-2) because it has some security issues so we can send notification using lambda functions to Management team to delete it. 
 <br>
 Learn More : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/tree/main/day-17
+
+# Cloud Cost Optimization 
+Problem Statement : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/tree/main/day-18
+<br>
+We can solve this problem using Lambda function. 
+<br>
+For this problem we will write a lambda function using python (boto3) which will further talk to aws api to perform operations.
+<br>
+We can automate using AWS EventBridge Rule and CloudWatch to invoke lambda function eveyday at particular time.
