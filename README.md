@@ -587,3 +587,21 @@ Three main problem solved by CloudFront(CDN):
 3. Security concerns to s3 buckets if static content is hosted in s3 buckets.
 <br>
 Learn More : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/tree/main/day-19
+
+# ECR : 
+It is a aws service which is used to store and manage the container images . 
+<br>
+It stands for Elastic Container Registry. It is a container registry for container images.
+<br>
+<b>DockerHub vs ECR</b>
+<br>
+1. In dockerhub, bydefault the repositories are public but we can create also private repository while in ECR the repository are private which is preferred for more security. 
+<br>
+2. ECR can directly integrated with AWS IAM services. 
+<br>
+3. ECR can also integrate with other AWS Services like ECS, EKS, Fargate, etc. 
+<br>
+Note  : Docker hub is preferred for public repositories/ images. 
+<br>
+Learn More : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/tree/main/day-20
+<br>
