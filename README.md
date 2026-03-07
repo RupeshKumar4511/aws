@@ -605,3 +605,32 @@ Note  : Docker hub is preferred for public repositories/ images.
 <br>
 Learn More : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/tree/main/day-20
 <br>
+
+# ECS : 
+Amazon Elastic Container Service (Amazon ECS) is a fully managed container orchestration service from Amazon Web Services that helps us run, manage, and scale containers in the cloud.
+<br>
+It is basically a Container orchestration Environment. It evolves because of some limitation in docker containers which are : Lack of Autoscaling and AutoHealing. 
+<br>
+This limitation/problem is further solved by kubernetes. 
+<br>
+ECS also solves the same problem. But there is a problem of vendor lock in. so we cannot migrate our application from aws to another cloud plateform using ECS.
+<br>
+It is restricted to AWS. But kubernetes are open source. It can be easily migrated. 
+<br>
+AWS ECS uses their own concept different from kubernetes. 
+<br>
+ECS does not provide much features which are provided by kubernetes like kubernetes has as feature called "CRD's : Custom resource definition" which extends the capabilites of kubernetes which lacks in ECS.
+<br>
+In kubernetes we can define ingress rule which helps to attach 1000 of loadbalancers to kubernetes which lacks in ECS. 
+<br>
+The Advantage of AWS ECS is if we use "ECS + Fargate" then we need to manage very less things. But kubernetes has very complex architeture. 
+<br>
+<b>How to Deploy Application on ECS : </b>
+<br>
+Step 1  : Create a repository on AWS ECR and then create a docker image and then login into ECR and push docker image to ECR. 
+<br>
+Step 2 : Create a cluster on ECS by choosing fargate to run containers. 
+<br>
+Step 3 : Create a task definition on ECS by choosing Task role "None" ane Task Execution Role "Create New Role" and adding the port which is Exposed.
+<br>
+Step 4 : Click on the "Deploy" on  Task definition UI and Run Task by selecting cluster.
