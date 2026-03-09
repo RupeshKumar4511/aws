@@ -536,7 +536,7 @@ We can search and analyze logs like which other service is used by EC2 instance.
 <br>
 By default metrics contains CPU utilization but not memory utilization so we need to setup custom metrics to know memory utilization.
 <br>
-CloudWatch also plays a critical role in cost optimization (using lambda functions) and auto scaling. 
+CloudWatch also plays a critical role in cost optimization (using lambda functions) and auto scaling(using fargate). 
 <br>
 Learn more : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/tree/main/day-16
 <br>
@@ -634,3 +634,90 @@ Step 2 : Create a cluster on ECS by choosing fargate to run containers.
 Step 3 : Create a task definition on ECS by choosing Task role "None" ane Task Execution Role "Create New Role" and adding the port which is Exposed.
 <br>
 Step 4 : Click on the "Deploy" on  Task definition UI and Run Task by selecting cluster.
+
+# EKS : 
+Without EKS we have to spin EC2 instances and configure all the components of control plane and data plane (worker node) and we also have to take care of some errors like : api-server slows, certificate expired, Controle plane EC2 instance down, etcd crashed, scheduler not working, etc. 
+<br>
+We can use EKS + fargate which is most efficient way to create K8S cluster. 
+<br>
+AWS EKS is a managed controlled plane service. 
+<br>
+It gives a highly availabile cluster with control plane components. It also helps to attach worker nodes to control plane. 
+<br>
+For worker node we can use fargate which is aws serverless compute defined for running containers because it is highly auto-scalable and available. 
+<br>
+We can also use EC2 but if we have to take care of its highly availability. we have to configure with auto-scaling-group.
+<br>
+
+# How to deploy application on kubernetes cluster and allow users to access it : 
+Let suppose we have three instance of master node and two instance of worker node. Our application is deployed in the pod (inside worker node 2). We wrote a configuration of our application in pod.yaml file and deployed it using command kubectl. Once application is deployed on a cluster's worker node then it will have cluter ip and application can be accessed anywhere in the cluster (inside master node and worker node). But end users cannot access it. 
+<br>
+To allow end users to access the application we can create service and deployed to worker node where the pod is deployed. This service has three mode. 
+<br>
+<b>1. cluster Ip mode: </b> Only accessible inside cluster.
+<br>
+<b>2. Nodeport mode : </b> Anyone who have ip address of any instances (master node or workere) they can access the application. But in real world scenerio applications are deployed in the private subnet of a VPC. 
+<br>
+<b>3. Load Balancers mode : </b> So to access the application we need to attach a loadbalancers to private subnet and attach elastic ip address to loadbalancers and it is done in this mode. But if we create loadbalancers for every pod then it might leads very high costs. 
+<br>
+So the best approach is to use Ingress Resource. Ingress actually routes the traffic inside cluster. 
+<br>
+<b> How to Ingress Resource works : </b>
+<br>
+We actually writes a "ingress.yaml" file which creates the ingress resource and deployed to worker node. Inside the ingress.yaml we write some configuration to allow users to access the application on following endpoints and if users want to access the application then ingress routes the request to service and service routes it to pod(application).
+<br>
+Then We deploy the ingress controller(nginx controller) on worker node using kubectl.
+<br>
+And when the ingress controller finds any ingress resource then it will create application load balancer (nginx load balancer in case of nginx controller). 
+<br>
+There will be one ingress controller in a cluster and every pod (application) has an ingress resource. The single ingress controller create a loadbalancer which routes the request to application through service. 
+<br>
+Note : controller are almost always just Pods running in your cluster (usually in the kube-system namespace).
+<br>
+Reference : https://github.com/iam-veeramalla/aws-devops-zero-to-hero/tree/main/day-22
+<br>
+Follow Step : prerequisites.md -> installing-eks.md -> 2048-app-deploy-ingress.md -> configure-oidc-connector.md -> alb-controller-add-on.md
+<br>
+Use Kubectl commands to get pods, deployment, service and ingress info. 
+<br>
+In the end run command : "kubectl get ingress -n <namespace>" to check whether aws-load-balancer-controller creates the loadbalancer for the ingress resource or not. Copy the address of loadbalancer and check it in browser. 
+<br>
+In the above example namespace is "game-2048". 
+
+# Namespace
+In Kubernetes and EKS, a namespace is a logical partition used to divide a single cluster into multiple "virtual clusters". It allows you to organize and isolate groups of resources (like Pods, Services, and Deployments) so they don't interfere with one. Think of it like folders on a computer—you can have two files named index.html as long as they are in different folders.
+<br>
+when you create a cluster, Kubernetes automatically provides these four namespace: 
+<br>
+default: Where your resources go if you don't specify a namespace.
+<br>
+kube-system: Reserved for the "engine" of Kubernetes (the control plane and system add-ons like CoreDNS).
+<br>
+kube-public: Visible to everyone (even unauthenticated users), usually used for cluster information.
+<br>
+kube-node-lease: Used for heartbeats that tell the cluster if your nodes are still "alive".
+
+# Kubectl commands : 
+```bash 
+# To get the pods info 
+kubectl get pods -n <namespace> -w 
+# -w stands for watching continously
+
+# To get the deployment info 
+kubectl get deploy -n <namespace>
+
+# To get the service info 
+kubectl get svc -n <namespace>
+
+# To get the ingress info 
+kubectl get ingress -n <namespace>
+
+
+# namespace can be custom or kube-system
+# kube-system for the ingress or aws-load-balancer-controller 
+
+```
+
+# Helm chart : 
+A Helm chart is a collection of files that describe a related set of Kubernetes resources. 
+
