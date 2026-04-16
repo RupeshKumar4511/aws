@@ -186,6 +186,18 @@ Bastion Host: Launch a small EC2 instance (e.g., t3.micro) in a public subnet wi
 <br>
 Bastion SG: Allow SSH (port 22) only from your specific office/home IP.
 <br>
+How to access the ec2 instance hosted in private subnet using bastion host : 
+<br>
+
+```bash 
+# securely copy key-pair on bastion host : 
+scp -i /c/Users/admin/downloads/aws_login.pem /c/Users/admin/downloads/aws_login.pem ubuntu@35.154.94.52:/home/ubuntu
+
+# Then access the bastion host using aws_login key-pair via ssh through which we can access the ec2 instance hosted in private subnet. 
+
+```
+
+<br>
 3. Application Layer
 <br>
 Auto Scaling Group (ASG): Deploy your application instances into the two private subnets. Use a Launch Template to define instance configurations. This feature is provided inside EC2 services.
