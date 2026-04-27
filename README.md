@@ -202,6 +202,8 @@ scp -i /c/Users/admin/downloads/aws_login.pem /c/Users/admin/downloads/aws_login
 <br>
 Auto Scaling Group (ASG): Deploy your application instances into the two private subnets. Use a Launch Template to define instance configurations. This feature is provided inside EC2 services.
 <br>
+During launch template we don't need to select any existing subnet.
+<br>
 Load Balancers: Deploy an Application Load Balancer (ALB) across the two public subnets. While the ALB is a single logical resource, it automatically creates nodes in both AZs for high availability. This feature is provided inside EC2 services.
 
 
@@ -473,6 +475,23 @@ Step 2 : Create AWS Codepipeline project and integrate it with Github source cod
 Make changes in the github source code and check whether build starts automatically or not. 
 <br>
 Note : We can use Codebuild as code builder and deployer.
+<br>
+Must grant SSMACCESS to codebuild-role to get the secrets from system manager.
+<br>
+Install amazon-instance on ec2 to deploy application
+<br>
+sudo snap install amazon-ssm-agent
+<br>
+sudo snap start amazon-ssm-agent
+<br>
+sudo snap services amazon-ssm-agent
+<br>
+Make sure the an IAM role is attached to instance where application is going to deploy.
+<br>
+And it has managed policy : AmazonSSMManagedInstanceCore
+<br>
+Must docker-compose installed on ec2. 
+
 
 # How to setup AWS CD : 
 Step 1 : Create a AWS codeDeploy application by selecting the Cloud Plateform(EC2,AWS Lambda, ECS).
